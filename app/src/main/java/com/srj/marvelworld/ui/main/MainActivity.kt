@@ -1,7 +1,8 @@
-package com.srj.marvelworld
+package com.srj.marvelworld.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.srj.marvelworld.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
