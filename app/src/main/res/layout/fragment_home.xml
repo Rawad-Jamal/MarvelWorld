@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.srj.marvelworld.ui.home.HomeViewModel" />
+        <variable
+            name="type"
+            type="com.srj.marvelworld.domain.types.MarvelContentType" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontal_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingHorizontal="16dp"
+            android:clipToPadding="false"
+            android:scrollbars="none"
+            android:background="@color/transparent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            style="@style/Widget.MaterialComponents.Chip.Filter">
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/characters"
+            app:chipStrokeColor="@color/primary_color"
+            app:chipStrokeWidth="@dimen/chip_border_width"
+            android:checked="true"
+            style="@style/ChipStyle"
+            android:onClick="@{()->viewModel.onChipClick(type.CHARACTERS)}" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comics"
+            app:chipStrokeColor="@color/primary_color"
+            app:chipStrokeWidth="@dimen/chip_border_width"
+            style="@style/ChipStyle"
+            android:onClick="@{()->viewModel.onChipClick(type.COMICS)}"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/creators"
+                app:chipStrokeColor="@color/primary_color"
+                app:chipStrokeWidth="@dimen/chip_border_width"
+                style="@style/ChipStyle"
+                android:onClick="@{()->viewModel.onChipClick(type.CREATORS)}"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/events"
+                app:chipStrokeColor="@color/primary_color"
+                app:chipStrokeWidth="@dimen/chip_border_width"
+                style="@style/ChipStyle"
+                android:onClick="@{()->viewModel.onChipClick(type.EVENTS)}"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/series"
+                app:chipStrokeColor="@color/primary_color"
+                app:chipStrokeWidth="@dimen/chip_border_width"
+                style="@style/ChipStyle"
+                android:onClick="@{()->viewModel.onChipClick(type.SERIES)}"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stories"
+                app:chipStrokeColor="@color/primary_color"
+                app:chipStrokeWidth="@dimen/chip_border_width"
+                style="@style/ChipStyle"
+                android:onClick="@{()->viewModel.onChipClick(type.STORIES)}"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_marvel_data"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/item_character"
+            android:padding="@dimen/space_small"
+            android:layout_marginBottom="@dimen/space_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_scroll_view"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/primary_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showWhenLoading="@{viewModel.listCharacters}" />
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
