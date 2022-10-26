@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">MarvelWorld</string>
+    <string name="app_name">Marvel World</string>
+
+
+    <string name="characters">Characters</string>
+    <string name="comics">Comics</string>
+    <string name="creators">Creators</string>
+    <string name="events">Events</string>
+    <string name="series">Series</string>
+    <string name="stories">Stories</string>
+
+    <string name="no_description">There\'s no description</string>
+
 </resources>
