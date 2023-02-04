@@ -11,6 +11,10 @@
         <variable
             name="listener"
             type="com.srj.marvelworld.ui.home.HomeInteractionListener" />
+
+        <variable
+            name="type"
+            type="com.srj.marvelworld.domain.types.MarvelContentType" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -18,7 +22,8 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/space_small"
         app:cardElevation="0dp"
-        android:layout_margin="@dimen/space_small">
+        android:layout_margin="@dimen/space_small"
+        android:onClick="@{() -> listener.onItemClick(item.id, type.CHARACTERS)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,9 +31,7 @@
 
             <ImageView
                 android:id="@+id/image_item"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/card_image_height"
-                android:scaleType="fitXY"
+                style="@style/card_image"
                 tools:src="@drawable/ic_launcher_background"
                 app:imageUrl="@{item.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,16 +40,9 @@
 
             <TextView
                 android:id="@+id/text_item_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:lines="2"
                 tools:text="Character Name"
                 android:text="@{item.name}"
-                android:textSize="16sp"
-                android:textColor="@color/secondary_black"
-                android:padding="@dimen/space_x_small"
-                android:layout_marginHorizontal="@dimen/space_small"
-                android:layout_marginVertical="@dimen/space_x_small"
+                style="@style/card_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image_item"

@@ -10,10 +10,13 @@
 
     <color name="primary_color">#F11E24</color>
     <color name="on_primary_color">#CC292E</color>
+    <color name="light_primary">#14F11E24</color>
+    <color name="dark_primary_color">#300102</color>
     <color name="light_grey">#F1EFF3</color>
     <color name="medium_grey">#BDBDBD</color>
     <color name="dark_grey">#4E4E4E</color>
-    <color name="secondary_black">#191919</color>
+    <color name="primary_black">#090909</color>
+    <color name="secondary_black">#121212</color>
     <color name="transparent">#00000000</color>
     <color name="sc">#FAE7E8</color>
 

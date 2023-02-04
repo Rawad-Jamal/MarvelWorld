@@ -2,8 +2,10 @@
 <resources>
 
     <!--   spaces values   -->
+    <dimen name="space_xx_small">2dp</dimen>
     <dimen name="space_x_small">4dp</dimen>
     <dimen name="space_small">8dp</dimen>
+    <dimen name="space_extra">12dp</dimen>
     <dimen name="space_medium">16dp</dimen>
     <dimen name="space_x_medium">20dp</dimen>
     <dimen name="space_large">24dp</dimen>
@@ -19,8 +21,7 @@
     <dimen name="text_xx_large">38sp</dimen>
     <dimen name="text_xxx_large">64sp</dimen>
 
-    <dimen name="chip_border_width">.8dp</dimen>
+    <dimen name="chip_border_width">0dp</dimen>
     <dimen name="card_image_height">164dp</dimen>
-
 
 </resources>
