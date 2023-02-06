@@ -10,7 +10,6 @@
         <variable
             name="type"
             type="com.srj.marvelworld.domain.types.MarvelContentType" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +41,7 @@
             app:chipStrokeColor="@color/primary_color"
             app:chipStrokeWidth="@dimen/chip_border_width"
             android:checked="true"
-            style="@style/ChipStyle"
+            style="@style/chip_style"
             android:onClick="@{()->viewModel.onChipClick(type.CHARACTERS)}" />
 
         <com.google.android.material.chip.Chip
@@ -51,7 +50,7 @@
             android:text="@string/comics"
             app:chipStrokeColor="@color/primary_color"
             app:chipStrokeWidth="@dimen/chip_border_width"
-            style="@style/ChipStyle"
+            style="@style/chip_style"
             android:onClick="@{()->viewModel.onChipClick(type.COMICS)}"/>
 
             <com.google.android.material.chip.Chip
@@ -60,7 +59,7 @@
                 android:text="@string/creators"
                 app:chipStrokeColor="@color/primary_color"
                 app:chipStrokeWidth="@dimen/chip_border_width"
-                style="@style/ChipStyle"
+                style="@style/chip_style"
                 android:onClick="@{()->viewModel.onChipClick(type.CREATORS)}"/>
 
             <com.google.android.material.chip.Chip
@@ -69,7 +68,7 @@
                 android:text="@string/events"
                 app:chipStrokeColor="@color/primary_color"
                 app:chipStrokeWidth="@dimen/chip_border_width"
-                style="@style/ChipStyle"
+                style="@style/chip_style"
                 android:onClick="@{()->viewModel.onChipClick(type.EVENTS)}"/>
 
             <com.google.android.material.chip.Chip
@@ -78,7 +77,7 @@
                 android:text="@string/series"
                 app:chipStrokeColor="@color/primary_color"
                 app:chipStrokeWidth="@dimen/chip_border_width"
-                style="@style/ChipStyle"
+                style="@style/chip_style"
                 android:onClick="@{()->viewModel.onChipClick(type.SERIES)}"/>
 
             <com.google.android.material.chip.Chip
@@ -87,7 +86,7 @@
                 android:text="@string/stories"
                 app:chipStrokeColor="@color/primary_color"
                 app:chipStrokeWidth="@dimen/chip_border_width"
-                style="@style/ChipStyle"
+                style="@style/chip_style"
                 android:onClick="@{()->viewModel.onChipClick(type.STORIES)}"/>
 
         </com.google.android.material.chip.ChipGroup>
@@ -102,29 +101,25 @@
             app:spanCount="2"
             tools:listitem="@layout/item_character"
             android:padding="@dimen/space_small"
-            android:layout_marginBottom="@dimen/space_small"
+            android:clipToPadding="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/horizontal_scroll_view"
             app:layout_constraintBottom_toBottomOf="parent" />
 
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/primary_color"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:lottie_rawRes="@raw/loading"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:showWhenLoading="@{viewModel.listCharacters}" />
-
-
-
-
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

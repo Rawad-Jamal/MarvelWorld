@@ -11,17 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.MainActivity"
-        android:background="@color/light_grey">
+        style="@style/screen_background">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="com.srj.marvelworld.ui.home.HomeFragment"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="0dp"
+            app:navGraph="@navigation/navigation"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_navbar_menu"
+            app:labelVisibilityMode="selected"
+            app:itemIconTint="@drawable/bottom_navigation_selector"
+            style="@style/bottom_navbar"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

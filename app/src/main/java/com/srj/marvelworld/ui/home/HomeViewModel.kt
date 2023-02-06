@@ -12,6 +12,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.srj.marvelworld.util.EventUtil
+import com.srj.marvelworld.util.extensions.postEvent
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -43,6 +45,8 @@ class HomeViewModel @Inject constructor(
     private val _totalItems = MutableLiveData<Int>()
     val totalItems: LiveData<Int> get() = _totalItems
 
+    private val _navigateToCharacterDetails = MutableLiveData<EventUtil<Int>>()
+    val navigateToCharacterDetails: LiveData<EventUtil<Int>> get() = _navigateToCharacterDetails
 
 
     init {
@@ -59,7 +63,6 @@ class HomeViewModel @Inject constructor(
     fun onChipClick(marvelContentType: MarvelContentType) {
         _currentType.postValue(marvelContentType)
     }
-
 
     private fun getAllCharacters() {
         viewModelScope.launch {
@@ -109,12 +112,18 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-
     private fun getAllTypesDataTotals() {
         viewModelScope.launch {
             wrapResponse { marvelRepository.getAllTypesTotalData() }.collectLatest {
                 _totalItems.postValue(it.toData()?.get(0))
             }
+        }
+    }
+
+    override fun onItemClick(itemId: Int, itemType: MarvelContentType) {
+        when(itemType){
+            MarvelContentType.CHARACTERS -> _navigateToCharacterDetails.postEvent(itemId)
+            else -> {}
         }
     }
 

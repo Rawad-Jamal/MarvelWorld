@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="ChipStyle" parent="@style/Widget.MaterialComponents.Chip.Filter">
-        <item name="chipBackgroundColor">@color/chip_background_color</item>
-        <item name="android:textColor">@color/chip_text_color</item>
+    <style name="chip_style" parent="@style/Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@drawable/chip_background_color</item>
+        <item name="android:textColor">@drawable/chip_text_color</item>
         <item name="checkedIconEnabled">false</item>
         <item name="checkedIcon">@null</item>
         <item name="android:padding">2dp</item>
         <item name="android:textSize">16dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="no_rounded_image_view">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0%</item>
+    </style>
+
+    <style name="half_rounded_image_view">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="bottom_rounded_image_view">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+    <style name="card_image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/card_image_height</item>
+        <item name="android:scaleType">fitXY</item>
     </style>
 
 </resources>

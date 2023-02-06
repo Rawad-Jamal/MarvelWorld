@@ -5,6 +5,7 @@ import com.srj.marvelworld.data.remote.response.DataWrapper
 import com.srj.marvelworld.domain.mapper.*
 import com.srj.marvelworld.domain.model.*
 import retrofit2.Response
+import java.util.*
 import javax.inject.Inject
 
 class MarvelRepositoryImpl @Inject constructor(
@@ -15,6 +16,7 @@ class MarvelRepositoryImpl @Inject constructor(
     private val eventMapper: EventMapper,
     private val seriesMapper: SeriesMapper,
     private val storyMapper: StoryMapper,
+    private val characterDetailsMapper: CharacterDetailsMapper,
 ): MarvelRepository {
 
     private fun <T> checkResponseData(response: Response<DataWrapper<T>>): Boolean = response.isSuccessful and !(response.body()?.data?.results).isNullOrEmpty()
@@ -61,6 +63,44 @@ class MarvelRepositoryImpl @Inject constructor(
             else -> emptyList()
         }
     }
+
+////////////////////////////////////// Character Details Data //////////////////////////////////////
+
+    override suspend fun getCharacterById(characterId: Int): CharacterDetails {
+        return when(checkResponseData(apiService.getCharacterById(characterId = characterId))){
+            true -> apiService.getCharacterById(characterId = characterId).body()?.data?.results?.first()?.let { characterDetailsMapper.mapping(it) }!!
+            else -> CharacterDetails(0,"","","", Date())
+        }
+    }
+
+    override suspend fun getComicsByCharacterId(characterId: Int): List<Comic> {
+        return when(checkResponseData(apiService.getCharacterComicsById(characterId))){
+            true -> apiService.getCharacterComicsById(characterId).body()?.data?.results?.map { comicMapper.mapping(it) }!!
+            else -> emptyList()
+        }
+    }
+
+    override suspend fun getEventsByCharacterId(characterId: Int): List<Event> {
+        return when(checkResponseData(apiService.getCharacterEventsById(characterId))){
+            true -> apiService.getCharacterEventsById(characterId).body()?.data?.results?.map { eventMapper.mapping(it) }!!
+            else -> emptyList()
+        }
+    }
+
+    override suspend fun getSeriesByCharacterId(characterId: Int): List<Series> {
+        return when(checkResponseData(apiService.getCharacterSeriesById(characterId))){
+            true -> apiService.getCharacterSeriesById(characterId).body()?.data?.results?.map { seriesMapper.mapping(it) }!!
+            else -> emptyList()
+        }
+    }
+
+    override suspend fun getStoriesByCharacterId(characterId: Int): List<Story> {
+        return when(checkResponseData(apiService.getCharacterStoriesById(characterId))){
+            true -> apiService.getCharacterStoriesById(characterId).body()?.data?.results?.map { storyMapper.mapping(it) }!!
+            else -> emptyList()
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     private fun <T> setLimitOfData(response: Response<DataWrapper<T>>): Int {
         return when(checkResponseData(response)){

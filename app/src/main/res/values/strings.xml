@@ -9,6 +9,15 @@
     <string name="series">Series</string>
     <string name="stories">Stories</string>
 
+    <string name="description">Description:</string>
     <string name="no_description">There\'s no description</string>
+
+    <string name="modified_date">Modified date:</string>
+
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+
+
 
 </resources>
