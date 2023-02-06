@@ -24,9 +24,11 @@ object RepositoryModule {
         eventMapper: EventMapper,
         seriesMapper: SeriesMapper,
         storyMapper: StoryMapper,
-
+        characterDetailsMapper: CharacterDetailsMapper,
     ): MarvelRepository {
-        return MarvelRepositoryImpl(apiService, characterMapper, comicMapper, creatorMapper, eventMapper, seriesMapper, storyMapper, )
+        return MarvelRepositoryImpl(
+            apiService, characterMapper, comicMapper, creatorMapper, eventMapper,
+            seriesMapper, storyMapper, characterDetailsMapper)
     }
 
     @Singleton
@@ -53,4 +55,7 @@ object RepositoryModule {
     @Provides
     fun provideStoryMapper(): StoryMapper = StoryMapper()
 
+    @Singleton
+    @Provides
+    fun provideCharacterDetailsMapper(): CharacterDetailsMapper = CharacterDetailsMapper()
 }
