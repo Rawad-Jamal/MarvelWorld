@@ -1,14 +1,15 @@
 package com.srj.marvelworld.ui.home
 
 import android.os.Bundle
-import android.transition.TransitionManager
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import com.srj.marvelworld.R
 import com.srj.marvelworld.data.remote.request.UiState
 import com.srj.marvelworld.databinding.FragmentHomeBinding
 import com.srj.marvelworld.domain.types.MarvelContentType
 import com.srj.marvelworld.ui.base.BaseFragment
+import com.srj.marvelworld.util.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +22,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fr
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
         handleMarvelContentType()
-
+        handleEvents()
     }
 
     private fun handleMarvelContentType(){
@@ -77,6 +78,17 @@ class HomeFragment: BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fr
         viewModel.listStories.observe(viewLifecycleOwner) { state ->
             binding.recyclerMarvelData.adapter = StoriesAdapter(handleUiStateItems(state), viewModel)
         }
+    }
+
+    private fun handleEvents(){
+        viewModel.navigateToCharacterDetails.observeEvent(viewLifecycleOwner){ characterId ->
+            navigateToCharacterDetails(characterId)
+        }
+    }
+
+    private fun navigateToCharacterDetails(characterId: Int){
+        requireView().findNavController()
+            .navigate(HomeFragmentDirections.actionHomeFragmentToCharacterDetailsFragment(characterId))
     }
 
 }

@@ -2,6 +2,7 @@ package com.srj.marvelworld.ui.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
@@ -13,6 +14,7 @@ abstract class BaseAdapter<T>(
     private val _listener: BaseInteractionListener
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
 
+    @get:LayoutRes
     abstract val layoutID: Int
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =
